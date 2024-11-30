@@ -1,7 +1,7 @@
 import argparse
 import csv
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Set up argument parser
 parser = argparse.ArgumentParser(description="Extract event start dates from CSV file")
@@ -49,15 +49,16 @@ CSV_ROW = (
 ticket_count = 40
 price = 15
 start_date = datetime.today().strftime("%Y/%m/%d")
-start_time = "12:01 AM"
-end_time = "11:59 PM"
+start_time = "12:00 AM"
+end_time = "12:00 AM"
+one_day = timedelta(days=1)
 
 with open(tickets_filename, 'w+') as f:
     f.write(CSV_HEADER)
     for i, practice in enumerate(practice_dates):
         _id = args.starting_id + i
         ticket_name = f"practice{practice.strftime('%Y%m%d')}"
-        end_date = practice.strftime("%Y/%m/%d")
+        end_date = (practice + one_day).strftime("%Y/%m/%d")
         f.write(CSV_ROW.format(
             _id=_id,
             ticket_name=ticket_name,
