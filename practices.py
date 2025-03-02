@@ -21,11 +21,12 @@ coaches = {
     "alex": "Alex P.",
     "erik": "Erik T.",
     "matt": "Matt J.",
-    "nate": "Nate K",
+    "nate": "Nate K.",
+    "jamie": "Jamie C.",
 }
 
 # Set the target weekday and initialize DEFAULT_START_DATE
-practice_days = [Weekday.TUESDAY, Weekday.THURSDAY]
+practice_days = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.THURSDAY]
 today = datetime.today()
 
 # Move to the first day of the next month
