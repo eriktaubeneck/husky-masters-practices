@@ -39,15 +39,16 @@ month_and_year = input(f"MM/YY? (Default {next_month.strftime('%m/%y')}): ")
 if month_and_year == "":
     month, year = next_month.month, next_month.year
 else:
-    month, year = int(month_and_year.split("/")[0]), int(month_and_year.split("/")[1])
+    month = int(month_and_year.split("/")[0].lstrip("0"))
+    century = (next_month.year//100)*100
+    year = century + int(month_and_year.split("/")[1])
 
 practice_dates = (
     d for d in
     cal.itermonthdates(year, month)
     if d.weekday() in [pd.value for pd in practice_days]
-    and d.month == next_month.month
+    and d.month == month
 )
-
 
 CSV_HEADER = (
     "EVENT NAME,EVENT EXCERPT,EVENT VENUE NAME,EVENT ORGANIZER NAME,EVENT START DATE,"
@@ -59,11 +60,12 @@ CSV_HEADER = (
 )
 
 CSV_ROW_TEMPLATE = (
-    "{practice_title},,View Ridge Swim & Tennis Club,{coach},{start_dt},{end_dt},FALSE,America/Los_Angeles,"
-    "FALSE,FALSE,Practice,,,,,,,,,FALSE,FALSE\n"
+    "{practice_title},,View Ridge Swim & Tennis Club,{coach},{start_dt},{end_dt},"
+    "FALSE,America/Los_Angeles,FALSE,FALSE,Practice,,,,,,,,,FALSE,FALSE\n"
 )
 
-filename = f"{next_month.strftime('%Y-%m-%d')}-practices.csv"
+
+filename = f"{year}-{month:02d}-01-practices.csv"
 
 with open(filename, "w+") as f:
     f.write(CSV_HEADER)
