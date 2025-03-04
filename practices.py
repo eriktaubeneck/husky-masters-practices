@@ -60,7 +60,7 @@ CSV_HEADER = (
 )
 
 CSV_ROW_TEMPLATE = (
-    "{practice_title},,View Ridge Swim & Tennis Club,{coach},{start_dt},{end_dt},"
+    "{practice_title},,View Ridge Swim and Tennis Club,{coach},{start_dt},{end_dt},"
     "FALSE,America/Los_Angeles,FALSE,FALSE,Practice,,,,,,,,,FALSE,FALSE\n"
 )
 
